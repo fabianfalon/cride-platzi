@@ -6,6 +6,9 @@ from django.db import models
 # Utilities
 from cride.utils.models import CRideModel
 
+# Managers
+from cride.circles.managers import InvitationManager
+
 
 class Invitation(CRideModel):
     """Circle invitation.
@@ -36,6 +39,9 @@ class Invitation(CRideModel):
 
     used = models.BooleanField(default=False)
     used_at = models.DateTimeField(blank=True, null=True)
+
+    # Manager
+    objects = InvitationManager()
 
     def __str__(self):
         """Return code and circle."""
