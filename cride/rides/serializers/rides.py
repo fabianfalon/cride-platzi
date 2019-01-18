@@ -153,7 +153,7 @@ class JoinRideSerializer(serializers.ModelSerializer):
         if ride.available_seats < 1:
             raise serializers.ValidationError("Ride is already full!")
 
-        if Ride.objects.filter(passengers__pk=data['passenger']):
+        if ride.passengers.filter(pk=self.context['user'].pk).exists():
             raise serializers.ValidationError('Passenger is already in this trip')
 
         return data
